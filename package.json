@@ -1,0 +1,29 @@
+{
+  "name": "scrape-that-mongo",
+  "version": "1.0.0",
+  "description": "\"Users leave comments on latest news\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raven-wills/Scrape-That-Mongo.git"
+  },
+  "author": "Raven Wills",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raven-wills/Scrape-That-Mongo/issues"
+  },
+  "homepage": "https://github.com/raven-wills/Scrape-That-Mongo#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.1.5",
+    "morgan": "^1.9.0",
+    "request": "^2.87.0"
+  }
+}
