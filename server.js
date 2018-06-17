@@ -4,7 +4,7 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var cheerio = require("cheerio");
-var request = require("request");
+var axios = require("axios");
 
 // Require all models
 var db = require("./models");
@@ -35,7 +35,7 @@ var databaseUrl = "recipesdb";
 var collections = ["recipes"];
 
 // If deployed, use the deployed database. Otherwise use the local mongoRecipes database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoRecipes";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/recipesdb";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
@@ -43,45 +43,55 @@ mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
 // Scrape Tastemade
-app.get("/", function(req, res) {
+app.get("/scrape", function(req, res) {
   var requestLink = "https://www.tastemade.com";
 
-  request("https://www.tastemade.com/recipes/healthy", function(
-    error,
-    response,
-    html
-  ) {
-    var $ = cheerio.load(html);
+  axios
+    .get("https://www.tastemade.com/recipes/healthy")
+    .then(function(response) {
+      var $ = cheerio.load(response.data);
 
-    $("div.MediaCard").each(function(i, element) {
-      var link = $(element)
-        .children()
-        .attr("href");
-      var title = $(element)
-        .find("h2")
-        .text();
-      var description = $(element)
-        .find("p")
-        .text();
+      $("div.MediaCard").each(function(i, element) {
+        var result = {};
 
-      if (title && link && description) {
-        db.recipes.insert(
-          {
-            title: title,
-            link: link,
-            description: description
-          },
-          function(err, inserted) {
-            if (err) {
-              console.log(err);
-            } else {
-              console.log(inserted);
-            }
-          }
-        );
-      }
+        result.link = $(this)
+          .children()
+          .attr("href");
+        result.title = $(this)
+          .find("h2")
+          .text();
+        result.description = $(this)
+          .find("p")
+          .text();
+
+        link = requestLink + link;
+
+        db.Recipe.create(result)
+          .then(function(dbRecipe) {
+            console.log(dbRecipe);
+          })
+          .catch(function(err) {
+            return res.json(err);
+          });
+      });
+      res.send("Scrape Complete");
     });
-  });
+});
+
+// Route for getting all Articles from the db
+app.get("/", function(req, res) {
+  // Grab every document in the Articles collection
+  db.Recipe.find({})
+    .then(function(dbRecipes) {
+      // If we were able to successfully find Articles, send them back to the client
+      return res.render("index", {
+        recipes: dbRecipes
+      });
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
 });
 
 app.listen(PORT, function() {

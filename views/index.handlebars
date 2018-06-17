@@ -1,0 +1,46 @@
+<header>
+    <div id="overlay"></div>
+    <h1 id="head">Recipes</h1>
+    <nav class="cd-stretchy-nav">
+        <a class="cd-nav-trigger" href="#0">
+            Menu
+            <span aria-hidden="true"></span>
+        </a>
+        <ul>
+            <li>
+                <a href="/" class="active">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="/saved">
+                    <span>Saved Articles</span>
+                </a>
+            </li>
+            <li>
+                <a class="scrape-new">
+                    <span>Scrape More Articles</span>
+                </a>
+            </li>
+        </ul>
+
+        <span aria-hidden="true" class="stretchy-nav-bg"></span>
+    </nav>
+</header>
+<div class="recipe-list">
+    {{#each recipes}}
+    <div class="recipe-container">
+        <div class="panal">
+            <div class="panal-heading">
+                <h3>
+                    <a href="" target="_blank" class="recipe-link"></a>
+                    <a class="save">Save Recipe</a>
+                </h3>
+            </div>
+            <div id="recipes"> {{this}}</div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/main.js"></script>
