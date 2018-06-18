@@ -5,6 +5,7 @@ var bodyParser = require("body-parser");
 var logger = require("morgan");
 var cheerio = require("cheerio");
 var axios = require("axios");
+var request = require("request");
 
 // Require all models
 var db = require("./models");
@@ -46,36 +47,39 @@ mongoose.connect(MONGODB_URI);
 app.get("/scrape", function(req, res) {
   var requestLink = "https://www.tastemade.com";
 
-  axios
-    .get("https://www.tastemade.com/recipes/healthy")
-    .then(function(response) {
-      var $ = cheerio.load(response.data);
+  request.get("https://www.tastemade.com/recipes/healthy", function(
+    error,
+    response,
+    html
+  ) {
+    var $ = cheerio.load(html);
 
-      $("div.MediaCard").each(function(i, element) {
-        var result = {};
-
-        result.link = $(this)
-          .children()
+    $("div.MediaCard").each(function(i, element) {
+      var result = {};
+      result.link =
+        requestLink +
+        $(this)
+          .find("a")
           .attr("href");
-        result.title = $(this)
-          .find("h2")
-          .text();
-        result.description = $(this)
-          .find("p")
-          .text();
+      result.title = $(this)
+        .find("h2")
+        .text();
+      result.description = $(this)
+        .find("p")
+        .first()
+        .text();
 
-        link = requestLink + link;
-
-        db.Recipe.create(result)
-          .then(function(dbRecipe) {
-            console.log(dbRecipe);
-          })
-          .catch(function(err) {
-            return res.json(err);
-          });
-      });
-      res.send("Scrape Complete");
+      db.Recipe.create(result)
+        .then(function(dbRecipe) {
+          // View the added result in the console
+        })
+        .catch(function(err) {
+          // If an error occurred, send it to the client
+          return res.json(err);
+        });
     });
+  });
+  res.send("Scrape Complete");
 });
 
 // Route for getting all Articles from the db
@@ -85,7 +89,8 @@ app.get("/", function(req, res) {
     .then(function(dbRecipes) {
       // If we were able to successfully find Articles, send them back to the client
       return res.render("index", {
-        recipes: dbRecipes
+        recipes: dbRecipes,
+        _id: 0
       });
     })
     .catch(function(err) {

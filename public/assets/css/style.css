@@ -80,6 +80,12 @@ img {
   position: relative;
 }
 
+.description {
+  padding: 15px 10px;
+  font-size: 1.7rem;
+  color: #333;
+}
+
 .save {
   background-color: #9acd91;
   color: white;
@@ -87,7 +93,7 @@ img {
   border-radius: 2px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
-  bottom: 5px;
+  bottom: 10px;
   left: 81.969px;
   transition-duration: 0.2s;
 }
