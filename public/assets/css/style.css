@@ -29,9 +29,9 @@ body {
     helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
 }
 
-#modal-1 {
+/* #modal-1 {
   z-index: 100;
-}
+} */
 
 .modal__overlay {
   position: fixed;
