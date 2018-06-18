@@ -203,7 +203,8 @@ body {
 }
 
 header {
-  background: url(../img/tastemade.jpg) no-repeat center fixed;
+  background: url("http://res.cloudinary.com/vpp/image/upload/f_auto,q_auto/v1529336259/tastemade_crzkv9.jpg")
+    no-repeat center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
