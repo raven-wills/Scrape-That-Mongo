@@ -38,7 +38,9 @@
                     </h3>
                 </a>
             </div>
-            <div class="description">{{this.description}}</div>
+            <a href="{{this.link}}" target="_blank" class="recipe-link">
+                <div class="description">{{this.description}}</div>
+            </a>
         </div>
         {{#if this.saved}}
         <button data-id={{this.id}} disabled id="already-saved" class="save">Saved</button>
