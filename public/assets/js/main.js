@@ -18,6 +18,10 @@ jQuery(document).ready(function() {
         stretchyNavs.removeClass("nav-is-visible");
     });
   }
+
+  MicroModal.init({
+    awaitCloseAnimation: true
+  });
 });
 
 const onSave = clickedButton => {
