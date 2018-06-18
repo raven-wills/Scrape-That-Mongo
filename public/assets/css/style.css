@@ -27,6 +27,7 @@ header {
   -o-background-size: cover;
   background-size: cover;
   height: 350px;
+  margin-bottom: 10px;
 }
 
 #overlay {
@@ -65,10 +66,15 @@ img {
 }
 
 .recipe-list {
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 80%;
-  margin: 0 auto;
+  margin: 0 auto; */
+  display: flex;
+  margin: auto;
+  width: 80%;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .recipe-container {
@@ -77,7 +83,10 @@ img {
   height: 300px;
   padding: 10px;
   margin: 10px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .description {
@@ -89,48 +98,54 @@ img {
 .save {
   background-color: #9acd91;
   color: white;
+  width: 45%;
+  font-size: 1em;
   padding: 0.5em 1em;
   border-radius: 2px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  bottom: 10px;
-  left: 81.969px;
+  cursor: pointer;
   transition-duration: 0.2s;
+  height: 2.5em;
+  margin: 0.7em;
+}
+
+#already-saved {
+  background-color: #cd9591;
+  cursor: default;
+}
+
+#already-saved:hover {
+  box-shadow: none;
+  transform: none;
 }
 
 .save:hover {
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
-  padding: 0.7em 1.2em;
-  left: 79.5px;
+  transform: translateY(-2px);
 }
 
-.remove {
+.save:focus {
+  outline: none;
+}
+
+.button-container {
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#remove {
   background-color: #cd9591;
-  color: white;
-  padding: 0.5em 1em;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  bottom: 10px;
-  float: left;
-  transition-duration: 0.2s;
+  font-size: 1em;
+  white-space: nowrap;
+  width: 35%;
 }
 
-.remove:hover {
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
-  padding: 0.7em 1.2em;
-}
-
-.notes {
+#notes {
   background-color: #91bacd;
-  color: white;
-  padding: 0.5em 1em;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  bottom: 10px;
-  transition-duration: 0.2s;
-  left: 15px;
+  font-size: 1em;
+  white-space: nowrap;
+  width: 35%;
 }
 
 h3 {

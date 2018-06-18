@@ -19,3 +19,20 @@ jQuery(document).ready(function() {
     });
   }
 });
+
+const onSave = clickedButton => {
+  const id = String(clickedButton.dataset.id);
+  axios.post(`/saved/${id}`);
+  clickedButton.style["background-color"] = "#cd9591";
+  clickedButton.innerText = "Saved";
+  clickedButton.style["box-shadow"] = "none";
+  clickedButton.style["transform"] = "none";
+};
+
+const onUnsave = clickedButton => {
+  const id = String(clickedButton.dataset.id);
+  axios.post(`/unsaved/${id}`).then(function() {
+    console.log("hello");
+  });
+  window.location.reload();
+};

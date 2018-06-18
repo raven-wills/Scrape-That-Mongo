@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li>
-                <a class="scrape-new">
+                <a href="/scrape">
                     <span>Scrape More Articles</span>
                 </a>
             </li>
@@ -40,12 +40,10 @@
                 </a>
             </div>
             <div class="description">{{this.description}}</div>
-            <div>
-                <a href="" class="notes">Recipe Notes</a>
-            </div>
-            <div>
-                <a class="remove">Remove Recipe</a>
-            </div>
+        </div>
+        <div class="button-container">
+            <button data-id={{this.id}} class="save" id="notes">Notes</button>
+            <button data-id={{this.id}} class="save" id="remove" onclick=onUnsave(this)>Unsave</button>
         </div>
     </div>
 
