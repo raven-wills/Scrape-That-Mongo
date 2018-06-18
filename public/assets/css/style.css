@@ -104,6 +104,35 @@ img {
   left: 79.5px;
 }
 
+.remove {
+  background-color: #cd9591;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 10px;
+  float: left;
+  transition-duration: 0.2s;
+}
+
+.remove:hover {
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+  padding: 0.7em 1.2em;
+}
+
+.notes {
+  background-color: #91bacd;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 10px;
+  transition-duration: 0.2s;
+  left: 15px;
+}
+
 h3 {
   cursor: pointer;
 }
