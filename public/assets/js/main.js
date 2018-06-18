@@ -24,10 +24,6 @@ jQuery(document).ready(function() {
   });
 });
 
-$("#notes").click(function() {
-  MicroModal.show("modal-1");
-});
-
 const onSave = clickedButton => {
   const id = String(clickedButton.dataset.id);
   axios.post(`/saved/${id}`);

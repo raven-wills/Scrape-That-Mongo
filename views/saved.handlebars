@@ -36,7 +36,7 @@
                 </form>
             </main>
             <footer class="modal__footer">
-                <button class="modal__btn modal__btn-close" data-micromodal-close aria-label="Close this dialog window">Close</button>
+                <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
                 <button class="modal__btn modal__btn-primary">Add</button>
             </footer>
         </div>
@@ -57,7 +57,7 @@
             <div class="description">{{this.description}}</div>
         </div>
         <div class="button-container">
-            <button data-id={{this.id}} class="save" id="notes">Notes</button>
+            <button data-id={{this.id}} class="save" id="notes" data-micromodal-trigger="modal-1">Notes</button>
             <button data-id={{this.id}} class="save" id="remove" onclick=onUnsave(this)>Unsave</button>
         </div>
     </div>
